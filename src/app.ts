@@ -1,14 +1,24 @@
-import express from 'express';
-import { DBMongo } from './services/db-mongo';
+import express from "express";
+import { DBMongo } from "./services/db-mongo";
 
-const app = express();
+type ApplicationOptions = {
+    services: Function[];
+    port: Number;
+}
+class Application {
+    constructor(private app: Express.Application, private options: ApplicationOptions) {}
 
-const port = 3000;
+    async start() {
+        await this.installService();
+    }
 
-new DBMongo().install();
+    private async installService() {
+        for (const Service of this.options.services) {
+            console.log(Service.name)
+        }
+    }
+}
 
-app.get('/', (req, res) => {
-    res.send('Hello world');
-});
+const app = new Application(express(), { port: 8080, services: [DBMongo] });
 
-app.listen(port, () => console.log(`Express is listening at port: ${port}`))
+app.start();

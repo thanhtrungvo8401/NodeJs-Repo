@@ -1,5 +1,5 @@
 import { dbMongo } from "../../configs/db-mongo";
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
 export class DBMongo {
     #url: string;
@@ -8,8 +8,7 @@ export class DBMongo {
         this.#url = dbMongo.url;
     }
 
-    async install(): Promise<void> {
-       await mongoose.connect(this.#url);
-        console.log(`${this.constructor.name} installed successfully !!!`);
+    async install(): Promise<Mongoose> {
+       return await mongoose.connect(this.#url);
     }
 };
