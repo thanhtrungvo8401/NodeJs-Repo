@@ -1,10 +1,14 @@
 import { dbMongo } from "../../configs/db-mongo";
 import mongoose, { Mongoose } from "mongoose";
+import { Service } from "typedi";
+import { AppService } from "../../types";
 
-export class DBMongo {
+@Service()
+export class DBMongo extends AppService{
     #url: string;
 
     constructor() {
+        super();
         this.#url = dbMongo.url;
     }
 

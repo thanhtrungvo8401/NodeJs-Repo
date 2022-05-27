@@ -1,10 +1,13 @@
+import 'reflect-metadata';
 import express from "express";
+import { Service } from 'typedi';
+
+// Services:
 import { DBMongo } from "./services/db-mongo";
 
-type ApplicationOptions = {
-    services: Function[];
-    port: Number;
-}
+// Types:
+import { ApplicationOptions, AppService } from './types';
+import Container from 'typedi';
 class Application {
     constructor(private app: Express.Application, private options: ApplicationOptions) {}
 
@@ -14,7 +17,8 @@ class Application {
 
     private async installService() {
         for (const Service of this.options.services) {
-            console.log(Service.name)
+            await (Container.get(Service) as AppService).install();
+            console.log(`${Service.name} installed successfully`);
         }
     }
 }
