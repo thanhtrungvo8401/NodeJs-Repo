@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import express from "express";
-import { Service } from 'typedi';
 
 // Services:
 import { DBMongo } from "./services/db-mongo";
