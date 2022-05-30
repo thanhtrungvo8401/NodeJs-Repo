@@ -10,6 +10,7 @@
     "express": "^4.18.1",
     "mongoose": "^6.3.3",
     "reflect-metadata": "^0.1.13",
+    "slugify": "^1.6.5",
     "typedi": "^0.10.0"
   },
   "devDependencies": {
