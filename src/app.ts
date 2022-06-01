@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import express from "express";
+import bodyParser from 'body-parser';
 
 // Services:
 import { DBMongo } from "./services/db-mongo";
@@ -25,7 +26,11 @@ class Application {
     async start() {
         await this.installService();
 
-        await this.installRoutes(); 
+        await this.installAppMiddleware();
+
+        await this.installRoutes();
+
+        await this.installErrorHandler();
 
         this.app.listen(this.port, () => {
             console.log(`\nApplication successfully started at port: ${this.port}`);
@@ -43,6 +48,16 @@ class Application {
 
     private async installRoutes() {
         RoutesConfig.config(this.app);
+    }
+
+    private async installAppMiddleware() {
+        this.app.use(bodyParser.json());
+    }
+
+    private async installErrorHandler() {
+        this.app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+            res.json({ success: false, err });
+        })
     }
 }
 

@@ -12,6 +12,10 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    imageUrl: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         required: true
@@ -27,17 +31,12 @@ const articleSchema = new mongoose.Schema({
     }
 });
 
-articleSchema.pre("save", function(next) {
+articleSchema.pre("validate", function(next) {
     if (this.title) {
         this.slug = slugify(this.title, { lower: true, strict: true });
     };
 
-    if (!this._id) {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    } else {
-        this.updatedAt = new Date();
-    }
+    this.updatedAt = new Date();
 
     next();
 });

@@ -1,12 +1,12 @@
 import express from "express";
 import Container from "typedi";
 
-import { ChildDocsRoute } from "./child-docs.routes";
+import { ArticleRoutes } from "./article.routes";
 
-const childDocs = Container.get(ChildDocsRoute);
+const articleRoutes = Container.get(ArticleRoutes);
 
 export class RoutesConfig {
     static config(app: express.Application) {
-        app.use('/child-docs', childDocs.install());
+        app.use('/article', articleRoutes.install());
     }
 }
