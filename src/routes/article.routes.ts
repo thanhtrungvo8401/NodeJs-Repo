@@ -5,7 +5,7 @@ import { Article } from "../entities/article.entity";
 import { Route } from "../types";
 
 
-const postHandlers = [
+const createHandlers = [
     async (req: express.Request, res: express.Response) => {
         const article = new Article(req.body);
         
@@ -35,7 +35,7 @@ const getAllHandlers = [
     }
 ]
 
-const putHandlers = [
+const updateHandlers = [
     async (req: express.Request, res: express.Response) => {
         const body = req.body;
 
@@ -55,9 +55,9 @@ const putHandlers = [
 @Service()
 export class ArticleRoutes extends Route {
     configuration(): void {
-        this.get('/:id', ...getDetailHandlers);
         this.get('/', ...getAllHandlers);
-        this.post('/', ...postHandlers);
-        this.put('/:id', ...putHandlers);
+        this.get('/:id', ...getDetailHandlers);
+        this.post('/', ...createHandlers);
+        this.put('/:id', ...updateHandlers);
     }
 }
