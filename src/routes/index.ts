@@ -7,6 +7,6 @@ const articleRoutes = Container.get(ArticleRoutes);
 
 export class RoutesConfig {
     static config(app: express.Application) {
-        app.use('/article', articleRoutes.install());
+        app.use('/articles', articleRoutes.install());
     }
 }

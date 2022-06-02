@@ -3,11 +3,6 @@ import { Service } from "typedi";
 import { Article } from "../entities/article.entity";
 import { Route } from "../types";
 
-const handlers = [
-    (req: express.Request, res: express.Response) => {
-        res.json(req.body)
-    }
-]
 
 const postHandlers = [
     async (req: express.Request, res: express.Response) => {
@@ -21,11 +16,19 @@ const postHandlers = [
     }
 ]
 
+const getAllHandlers = [
+    async (req: express.Request, res: express.Response) => {
+        const articles = await Article.find({});
+        
+        res.json({ success: true, data: articles })
+    }
+]
+
 
 @Service()
 export class ArticleRoutes extends Route {
     configuration(): void {
-        this.get('/', ...handlers);
+        this.get('/', ...getAllHandlers);
         this.post('/', ...postHandlers);
     }
 }
