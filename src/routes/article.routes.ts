@@ -2,45 +2,64 @@ import express from "express";
 import slugify from "slugify";
 import { Service } from "typedi";
 import { Article } from "../entities/article.entity";
-import { Route } from "../types";
+import { Route } from "../types/application";
 
 const createHandlers = [
-  async (req: express.Request, res: express.Response) => {
-    const article = new Article(req.body);
+  async function (req: express.Request, result: any) {
+    const data = req?.body;
 
-    article.createdAt = new Date();
-
-    await article.save();
-
-    res.json({ success: true, data: article });
+    return {
+      data,
+      time: 1
+    }
+  },
+  async (req: express.Request, result: any) => {
+    return {
+      ...result,
+      time: result?.time + 1
+    }
+  },
+  async (req: express.Request, result: any) => {
+    return {
+      ...result,
+      time: result?.time + 1
+    }
+  },
+  async (req: express.Request, result: any) => {
+    return {
+      ...result,
+      time: result?.time + 1
+    }
   },
 ];
 
 const getDetailHandlers = [
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, result: any) => {
     const slug = req.params?.slug;
 
     const article = await Article.findOne({ slug: slug });
 
-    res.json({ success: true, data: article });
+    return article;
   },
 ];
 
 const getAllHandlers = [
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, result: any) => {
     const articles = await Article.find({});
 
-    res.json({ success: true, data: articles });
+    return articles;
   },
 ];
 
 const updateHandlers = [
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, result: any) => {
     const body = req.body;
 
     if (body.title) {
       body.slug = slugify(body.title, { lower: true, strict: true });
     }
+
+    return {}
   },
   async (req: express.Request, res: express.Response) => {
     const id = req.params?.id;
@@ -49,7 +68,8 @@ const updateHandlers = [
       runValidators: true,
       new: true,
     });
-    res.json({ success: true, data: article });
+
+    return article;
   },
 ];
 
