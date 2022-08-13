@@ -1,9 +1,9 @@
 import express from "express";
 import Container from "typedi";
 
-import { ArticleRoutes } from "./articles.route";
+import { ArticleRoute } from "./article.route";
 
-const articleRoutes = Container.get(ArticleRoutes);
+const articleRoutes = Container.get(ArticleRoute);
 
 export class RoutesConfig {
     static config(app: express.Application) {

@@ -1,5 +1,5 @@
 import express from "express";
-import { ArticleService } from "../services/articles.service";
+import { ArticleService } from "../services/article.service";
 
 export class ArticleController {
     static async createArticle(req: express.Request, result: any = {}) {
