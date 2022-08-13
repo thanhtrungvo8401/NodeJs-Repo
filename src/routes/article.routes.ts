@@ -2,7 +2,7 @@ import express from "express";
 import slugify from "slugify";
 import { Service } from "typedi";
 import { Article } from "../entities/article.entity";
-import { Route } from "../types/application";
+import { Route } from "../abstract/route";
 
 const createHandlers = [
   async function (req: express.Request, result: any) {

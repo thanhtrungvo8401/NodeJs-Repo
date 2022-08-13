@@ -1,9 +1,5 @@
 import express from "express";
 
-export abstract class AppService {
-    abstract install(): Promise<any>;
-}
-
 export abstract class Route {
     private _route: express.Router;
 
@@ -60,7 +56,8 @@ export abstract class Route {
                 }
 
                 res.status(200).json({
-                    data: result
+                    data: result,
+                    success: true
                 })
             } catch (error) {
                 console.log(error);

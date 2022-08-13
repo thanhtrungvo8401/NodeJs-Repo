@@ -11,7 +11,8 @@ import { DBMongo } from "./services/db-mongo";
 import { RoutesConfig } from "./routes";
 
 // Types:
-import { ApplicationOptions, AppService } from "./types/application";
+import { ApplicationOptions } from "./types/application";
+import { AppService } from "./abstract/app-service";
 import Container from "typedi";
 
 class Application {

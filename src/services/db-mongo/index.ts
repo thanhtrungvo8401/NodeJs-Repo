@@ -1,7 +1,7 @@
 import { dbMongo } from "../../configs/db-mongo";
 import mongoose, { Mongoose } from "mongoose";
 import { Service } from "typedi";
-import { AppService } from "../../types/application";
+import { AppService } from "../../abstract/app-service";
 
 @Service()
 export class DBMongo extends AppService{
