@@ -1,4 +1,5 @@
 import express from "express";
+import { ArticleService } from "../services/articles.service";
 
 export class ArticleController {
     static async createArticle(req: express.Request, result: any = {}) {
@@ -8,6 +9,6 @@ export class ArticleController {
     }
 
     static async getArticle(req: express.Request, result: any = {}) {
-        return "GET"
+        return await ArticleService.getArticles();
     }
 }

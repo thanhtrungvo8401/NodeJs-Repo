@@ -41,4 +41,4 @@ articleSchema.pre("validate", function(next) {
     next();
 });
 
-export const Article = mongoose.model('Article', articleSchema);
+export const ArticleModel = mongoose.model('Article', articleSchema);
