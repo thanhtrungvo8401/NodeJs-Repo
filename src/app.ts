@@ -5,7 +5,7 @@ import morgan from "morgan";
 import cors from "cors";
 
 // Services:
-import { DBMongo } from "./services/db-mongo";
+import { DBMongo } from "./3rd-party-services/db-mongo";
 
 // Routes:
 import { RoutesConfig } from "./routes";

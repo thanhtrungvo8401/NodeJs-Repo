@@ -3,6 +3,7 @@ import slugify from "slugify";
 import { Service } from "typedi";
 import { Article } from "../entities/article.entity";
 import { Route } from "../abstract/route";
+import { ArticleController } from "../controllers/article.controller";
 
 const createHandlers = [
   async function (req: express.Request, result: any) {
@@ -76,9 +77,7 @@ const updateHandlers = [
 @Service()
 export class ArticleRoutes extends Route {
   configuration(): void {
-    this.get("/", ...getAllHandlers);
-    this.get("/:slug", ...getDetailHandlers);
-    this.post("/", ...createHandlers);
-    this.put("/:id", ...updateHandlers);
+    this.get("/", ArticleController.getArticle);
+    this.post("/", ArticleController.createArticle);
   }
 }

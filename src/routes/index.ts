@@ -1,7 +1,7 @@
 import express from "express";
 import Container from "typedi";
 
-import { ArticleRoutes } from "./article.routes";
+import { ArticleRoutes } from "./articles.route";
 
 const articleRoutes = Container.get(ArticleRoutes);
 
